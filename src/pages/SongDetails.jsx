@@ -13,9 +13,9 @@ const SongDetails = () => {
     isFetching: isFetchingSongDetails,
   } = useGetSongDetailsQuery(songid)
 
-  console.log(songid)
   return (
     <div className="flex flex-col">
+      <DetailsHeader artistId="" songData={songData} />
       <div className="mb-10">
         <h2 className="text-white text-3xl font-bold">Lời bài hát</h2>
         <div className="mt-5">
