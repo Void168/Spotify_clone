@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-
-import { Error, Loader, SongCard } from '../components'
 import { useSelector } from 'react-redux'
+import { Error, Loader, SongCard } from '../components'
+
 import { useGetSongsByCountryQuery } from '../redux/services/shazamCore'
 
 const AroundYou = () => {
@@ -22,6 +22,8 @@ const AroundYou = () => {
   }, [country])
 
   if (isFetching && loading) return <Loader title="Bài hát ở quốc gia bạn" />
+
+  if (error && country) return <Error />
   return (
     <div className="flex flex-col">
       <h2 className="font-bold text-3xl text-white text-left mt-4 mb-10">
