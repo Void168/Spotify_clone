@@ -1,5 +1,3 @@
-const RelatedSongs = () => (
-  <div>Loader</div>
-);
+const RelatedSongs = () => <div></div>
 
-export default RelatedSongs;
+export default RelatedSongs

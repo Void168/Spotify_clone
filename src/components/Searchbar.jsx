@@ -1,5 +1,3 @@
-const Searchbar = () => (
-  <div>Loader</div>
-);
+const Searchbar = () => <div></div>
 
-export default Searchbar;
+export default Searchbar
