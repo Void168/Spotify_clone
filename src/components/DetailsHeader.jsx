@@ -26,7 +26,7 @@ const DetailsHeader = ({ artistId, artistData, songData }) => {
             </Link>
           )}
           <p className="text-base text-gray-400">
-            {artistId ? artist?.genresName[0] : songData?.genres?.primary}
+            {artistId ? artist?.genreNames[0] : songData?.genres?.primary}
           </p>
         </div>
       </div>
