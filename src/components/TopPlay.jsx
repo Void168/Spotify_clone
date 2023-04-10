@@ -1,15 +1,17 @@
-import { useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { FreeMode } from 'swiper'
+import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode } from "swiper";
 
-import PlayPause from './PlayPause'
-import { playPause, setActiveSong } from '../redux/features/playerSlice'
-import { useGetTopChartsQuery } from '../redux/services/shazamCore'
+import PlayPause from "./PlayPause";
+import { playPause, setActiveSong } from "../redux/features/playerSlice";
+import { useGetTopChartsQuery } from "../redux/services/shazamCore";
 
-import 'swiper/css'
-import 'swiper/css/free-mode'
+// eslint-disable-next-line import/no-unresolved
+import "swiper/css";
+// eslint-disable-next-line import/no-unresolved
+import "swiper/css/free-mode";
 
 const TopChartCard = ({
   song,
@@ -28,12 +30,12 @@ const TopChartCard = ({
         className="w-20 h-20 rounded-lg"
       />
       <div className="flex-1 flex flex-col justify-between mx-3">
-        <Link to={`/song/${song?.key}`}>
-          <p className="text-xl font-bold text-white">{song?.title}</p>
-        </Link>
-        <Link to={`/song/${song?.artists[0].adamid}`}>
-          <p className="text-ase font-bold text-gray-300">{song?.subtitle}</p>
-        </Link>
+        <p className="text-xl font-bold text-white">{song?.title}</p>
+        {/* <Link to={`/song/${song?.key}`}>
+        </Link> */}
+        <p className="text-ase font-bold text-gray-300">{song?.subtitle}</p>
+        {/* <Link to={`/song/${song?.artists[0].adamid}`}>
+        </Link> */}
       </div>
     </div>
     <PlayPause
@@ -44,28 +46,28 @@ const TopChartCard = ({
       handlePlay={handlePlayClick}
     />
   </div>
-)
+);
 
 const TopPlay = () => {
-  const dispatch = useDispatch()
-  const { activeSong, isPlaying } = useSelector((state) => state.player)
-  const { data } = useGetTopChartsQuery()
-  const divRef = useRef(null)
+  const dispatch = useDispatch();
+  const { activeSong, isPlaying } = useSelector((state) => state.player);
+  const { data } = useGetTopChartsQuery();
+  const divRef = useRef(null);
 
   useEffect(() => {
-    divRef.current.scrollIntoView({ behavior: 'smooth' })
-  })
+    divRef.current.scrollIntoView({ behavior: "smooth" });
+  });
 
-  const topPlays = data?.slice(0, 5)
-
+  const topPlays = data?.slice(0, 5);
+  console.log(topPlays);
   const handlePauseClick = () => {
-    dispatch(playPause(false))
-  }
+    dispatch(playPause(false));
+  };
 
   const handlePlayClick = (song, i) => {
-    dispatch(setActiveSong({ song, data, isPlaying }))
-    dispatch(playPause(true))
-  }
+    dispatch(setActiveSong({ song, data, isPlaying }));
+    dispatch(playPause(true));
+  };
 
   return (
     <div
@@ -117,12 +119,12 @@ const TopPlay = () => {
           {topPlays?.map((song, i) => (
             <SwiperSlide
               key={song?.key}
-              style={{ width: '25%', height: 'auto' }}
+              style={{ width: "25%", height: "auto" }}
               className="rounded-full shadow-lg animate-slideright"
             >
-              <Link to={`/artists/${song?.artists[0].adamid}`}>
+              <Link to={`/artists/${song?.artists?.adamid}`}>
                 <img
-                  src={song?.images.background}
+                  src={song?.images?.background}
                   alt="name"
                   className="rounded-full w-full object-cover"
                 />
@@ -132,7 +134,7 @@ const TopPlay = () => {
         </Swiper>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TopPlay
+export default TopPlay;
